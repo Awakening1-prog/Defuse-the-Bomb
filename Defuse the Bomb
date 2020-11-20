@@ -1,0 +1,24 @@
+class Solution:
+    def decrypt(self, code: List[int], k: int) -> List[int]:
+        l=[]
+        if k>0:
+            for i in range(len(code)):
+                if i+k<len(code):
+                    l.append(sum(code[i+1:i+k+1]))
+                elif i+k>=len(code):
+                    l.append(sum(code[i+1:i+k+1])+sum(code[:i+k-len(code)+1]))
+            print(l)
+            return l
+        elif k==0:
+            l=[0]*(len(code))
+            return l
+        else:
+            l=[0]*(len(code))
+            for i in range(len(code)):
+                if i+k<0:
+                    l[i]=sum(code[i+k:])+sum(code[:i])
+                elif i+k==0:
+                    l[i]=sum(code[i+k:i])
+                else:
+                    l[i]=sum(code[i+k:i])
+            return l
